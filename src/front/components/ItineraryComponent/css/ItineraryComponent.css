@@ -1,0 +1,25 @@
+.rbc-toolbar {
+  background-color: var(--wayfy-white);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.rbc-toolbar button {
+  background-color: white;
+  color: var(--wayfy-blue);
+  border: none;
+}
+
+.rbc-toolbar button.rbc-active {
+  background-color: var(--wayfy-green);
+  color: white;
+}
+
+.rbc-event {
+  overflow: hidden;
+}
+
+.rbc-event span {
+  display: block;
+  padding-right: 16px;
+}
