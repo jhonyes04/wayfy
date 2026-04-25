@@ -137,8 +137,9 @@ def create_event():
 
     new_event = Event(
         title=body["title"],
-        start=body["start"],
-        end=body["end"]
+        start=body["start"],    
+        end=body["end"],
+        category=body.get("category", "otros")  # 🔥 AHORA SÍ SE GUARDA
     )
 
     db.session.add(new_event)
@@ -158,6 +159,7 @@ def update_event(id):
     event.title = body.get("title", event.title)
     event.start = body.get("start", event.start)
     event.end = body.get("end", event.end)
+    event.category = body.get("category", event.category)
 
     db.session.commit()
 

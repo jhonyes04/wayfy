@@ -73,7 +73,7 @@ export const Register = () => {
 
         toast.success("¡Registro exitoso! Bienvenido.", { position: 'top-center' });
 
-        navigate("/");
+        navigate("/itinerary");
       } else {
         const data = await response.json();
         toast.error("Error: " + data.msg, { position: 'top-center' });

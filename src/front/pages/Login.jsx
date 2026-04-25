@@ -34,7 +34,7 @@ export const Login = () => {
             })
 
             toast.success('Inicio de sesión exitoso', { position: 'top-center' })
-            navigate('/')
+            navigate('/itinerary')
 
         } catch (error) {
             console.error("Error en login:", error)

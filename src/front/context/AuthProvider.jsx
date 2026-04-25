@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { UserContext } from './UserContext';
+import { useNavigate } from 'react-router-dom';
 
 export const AuthProvider = ({ children }) => {
+    const navigate = useNavigate()
     const [user, setUser] = useState(
         JSON.parse(sessionStorage.getItem("user")) || null
     );
@@ -10,7 +12,7 @@ export const AuthProvider = ({ children }) => {
 
     const login = (userData) => {
         sessionStorage.setItem("user", JSON.stringify(userData));
-        setUser(userData);          // ← FALTABA ESTO
+        setUser(userData);
         setToken(userData.token);
     };
 
@@ -18,6 +20,7 @@ export const AuthProvider = ({ children }) => {
         sessionStorage.removeItem("user");
         setUser(null);
         setToken(null);
+        navigate('/')
     };
 
     return (
