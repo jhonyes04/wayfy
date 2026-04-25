@@ -1,5 +1,3 @@
-// mapgpt.api.js
-
 export const fetchMapData = async (text) => {
     if (!text || text.trim().length < 2) return null;
 

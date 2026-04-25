@@ -7,6 +7,7 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 import useGlobalReducer from "../../hooks/useGlobalReducer";
 import { createPortal } from "react-dom";
 import { FilterCategories } from "../FilterPanel/FilterCategories";
+import { IteneraryModal } from "./IteneraryModal";
 
 moment.locale("es");
 const localizer = momentLocalizer(moment);
@@ -40,9 +41,9 @@ export const ItineraryComponent = () => {
     }, []);
 
 
-    const filteredPlaces = store.places.filter(place =>
-        place.name.toLowerCase().includes(text.toLowerCase())
-    );
+    // const filteredPlaces = store.places.filter(place =>
+    //     place.name.toLowerCase().includes(text.toLowerCase())
+    // );
 
     const handleAdd = (e) => {
         e.preventDefault();
@@ -204,88 +205,89 @@ export const ItineraryComponent = () => {
                     </div>
 
                     {createPortal(
-                        <div className="modal fade" id="itineraryModal" tabIndex="-1">
-                            <div className="modal-dialog modal-dialog-centered">
-                                <div className="modal-content">
+                        <IteneraryModal handleAddEdit={handleAdd} />
+                        // <div className="modal fade" id="itineraryModal" tabIndex="-1">
+                        //     <div className="modal-dialog modal-dialog-centered">
+                        //         <div className="modal-content">
 
-                                    <div className="modal-header">
-                                        <h5 className="modal-title">Agregar actividad</h5>
-                                        <button type="button" className="btn-close" data-bs-dismiss="modal"></button>
-                                    </div>
+                        //             <div className="modal-header">
+                        //                 <h5 className="modal-title">Agregar actividad</h5>
+                        //                 <button type="button" className="btn-close" data-bs-dismiss="modal"></button>
+                        //             </div>
 
-                                    <div className="modal-body">
+                        //             <div className="modal-body">
 
-                                        <form onSubmit={handleAdd}>
-
-
-                                            <div className="mb-3 position-relative">
-
-                                                <input
-                                                    type="text"
-                                                    className="form-control"
-                                                    placeholder="Actividad"
-                                                    value={text}
-                                                    onChange={(e) => setText(e.target.value)}
-                                                />
-
-                                                {text && (
-                                                    <ul className="list-group position-absolute w-100 shadow">
-                                                        {filteredPlaces.map(place => (
-                                                            <li
-                                                                key={place.id}
-                                                                className="list-group-item list-group-item-action"
-                                                                onClick={() => setText(place.name)}
-                                                            >
-                                                                📍 {place.name}
-                                                            </li>
-                                                        ))}
-                                                    </ul>
-                                                )}
-                                            </div>
-
-                                            <input
-                                                type="date"
-                                                className="form-control mb-3"
-                                                value={selectedDate}
-                                                onChange={(e) => setSelectedDate(e.target.value)}
-                                            />
+                        //                 <form onSubmit={handleAdd}>
 
 
+                        //                     <div className="mb-3 position-relative">
 
-                                            <div className="row mb-3">
-                                                <div className="col">
-                                                    <input
-                                                        type="time"
-                                                        className="form-control"
-                                                        value={startTime}
-                                                        onChange={(e) => setStartTime(e.target.value)}
-                                                    />
-                                                </div>
+                        //                         <input
+                        //                             type="text"
+                        //                             className="form-control"
+                        //                             placeholder="Actividad"
+                        //                             value={text}
+                        //                             onChange={(e) => setText(e.target.value)}
+                        //                         />
 
-                                                <div className="col">
-                                                    <input
-                                                        type="time"
-                                                        className="form-control"
-                                                        value={endTime}
-                                                        onChange={(e) => setEndTime(e.target.value)}
-                                                    />
-                                                </div>
-                                            </div>
+                        //                         {text && (
+                        //                             <ul className="list-group position-absolute w-100 shadow">
+                        //                                 {filteredPlaces.map(place => (
+                        //                                     <li
+                        //                                         key={place.id}
+                        //                                         className="list-group-item list-group-item-action"
+                        //                                         onClick={() => setText(place.name)}
+                        //                                     >
+                        //                                         📍 {place.name}
+                        //                                     </li>
+                        //                                 ))}
+                        //                             </ul>
+                        //                         )}
+                        //                     </div>
+
+                        //                     <input
+                        //                         type="date"
+                        //                         className="form-control mb-3"
+                        //                         value={selectedDate}
+                        //                         onChange={(e) => setSelectedDate(e.target.value)}
+                        //                     />
 
 
-                                            <div className="d-grid">
-                                                <button type="submit" className="btn btn-success">
-                                                    Agregar actividad
-                                                </button>
-                                            </div>
 
-                                        </form>
+                        //                     <div className="row mb-3">
+                        //                         <div className="col">
+                        //                             <input
+                        //                                 type="time"
+                        //                                 className="form-control"
+                        //                                 value={startTime}
+                        //                                 onChange={(e) => setStartTime(e.target.value)}
+                        //                             />
+                        //                         </div>
 
-                                    </div>
-                                </div>
-                            </div>
-                        </div>,
-                        document.body
+                        //                         <div className="col">
+                        //                             <input
+                        //                                 type="time"
+                        //                                 className="form-control"
+                        //                                 value={endTime}
+                        //                                 onChange={(e) => setEndTime(e.target.value)}
+                        //                             />
+                        //                         </div>
+                        //                     </div>
+
+
+                        //                     <div className="d-grid">
+                        //                         <button type="submit" className="btn btn-success">
+                        //                             Agregar actividad
+                        //                         </button>
+                        //                     </div>
+
+                        //                 </form>
+
+                        //             </div>
+                        //         </div>
+                        //     </div>
+                        // </div>
+                        , document.body
                     )}
 
 

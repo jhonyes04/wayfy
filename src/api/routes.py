@@ -85,8 +85,6 @@ def handle_signup():
     try:
         db.session.add(new_user)  # Preparamos la inserción
         db.session.commit()  # Guardamos en la base de datos definitivamente
-        return jsonify({"msg": "Usuario creado con éxito"}), 201
-
         # --- AQUÍ AHORA FUNCIONARÁ PORQUE JWT ESTÁ CONFIGURADO EN APP.PY ---
         access_token = create_access_token(identity=str(new_user.id))
 
@@ -98,6 +96,31 @@ def handle_signup():
 
     except Exception as e:
         return jsonify({"msg": "Error al guardar en base de datos"}), 500
+
+
+@api.route('/login', methods=['POST'])
+def handle_login():
+    body = request.get_json()
+
+    if not body or "email" not in body or "password" not in body:
+        return jsonify({"msg": "Datos incompletos"}), 400
+
+    user = User.query.filter_by(email=body["email"]).first()
+
+    if not user:
+        return jsonify({"msg": "Usuario no encontrado"}), 404
+
+    if not bcrypt.checkpw(body["password"].encode('utf-8'), user.password.encode('utf-8')):
+        return jsonify({"msg": "Contraseña incorrecta"}), 401
+
+    access_token = create_access_token(identity=str(user.id))
+
+    return jsonify({
+        "msg": "Inicio de sesión exitoso",
+        "token": access_token,
+        "user": user.serialize()
+    }), 200
+
 
 
 # PARTE DE BACKEND DE INTINERARY (LUZ)
