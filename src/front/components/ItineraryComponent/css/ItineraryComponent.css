@@ -24,11 +24,6 @@
     padding-right: 16px;
 }
 
-/* Oculta la hora que pone la librería por defecto delante del título */
-.rbc-event-label {
-    display: none !important;
-}
-
 /* Estilos para el efecto de arrastre */
 .rbc-addons-dnd-dragging .rbc-event {
     opacity: 0.5;
@@ -36,4 +31,26 @@
 
 .rbc-addons-dnd-resizable-month-event {
     position: static;
+}
+
+/* Permite que aparezcan los tiradores de redimensión */
+.rbc-addons-dnd-resizable-month-event {
+    position: static !important;
+}
+
+/* Mejora la visibilidad del cursor al redimensionar */
+.rbc-event {
+    touch-action: none;
+}
+
+.rbc-addons-dnd-resize-ns-anchor,
+.rbc-addons-dnd-resize-ew-anchor {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Oculta la hora duplicada que mencionaste antes */
+.rbc-event-label {
+    display: none !important;
 }

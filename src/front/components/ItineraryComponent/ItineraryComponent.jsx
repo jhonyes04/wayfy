@@ -208,6 +208,7 @@ export const ItineraryComponent = () => {
                         <DnDCalendar
                             localizer={localizer}
                             culture="es"
+                            step={15}
                             events={filteredEvents}
                             defaultView={Views.DAY}
                             views={[Views.WEEK, Views.DAY]}
