@@ -1,30 +1,35 @@
 import React from 'react'
 import { useShortcut } from '../../hooks/useShortcut'
+import { useTheme } from '../../hooks/useTheme'
 
 export const ShortcutToggle = () => {
     const { showShortcut, toggleShortcut, shortcutKey } = useShortcut()
+    const { theme } = useTheme()
 
     return (
-        <div className="d-flex align-items-center justify-content-between w-100">
-            <label htmlFor="shortcutSwitch" className="m-0">
+        <div className="shortcut-toggle d-flex align-items-center justify-content-between position-relative w-100">
+            {/* <label htmlFor="shortcutSwitch" className="m-0">
                 Mostrar atajos
-            </label>
+            </label> */}
+
+            <button
+                id="shortcutSwitch"
+                className={`switch-toggle ${showShortcut ? "active" : ""}`}
+                role="switch"
+                aria-checked={showShortcut}
+                onClick={toggleShortcut}
+            >
+                <span className="switch-slider">
+                    <i className={`${showShortcut ? 'fa-solid' : 'fa-regular'} fa-keyboard`}></i>
+                </span>
+            </button>
 
             {showShortcut && (
-                <span className="badge bg-dark ms-2">
+                <span className="badge bg-dark position-absolute ms-2" style={{ right: '-55px' }}>
                     {shortcutKey}
                 </span>
             )}
 
-            <div className="form-check form-switch m-0">
-                <input
-                    className="form-check-input"
-                    type="checkbox"
-                    id="shortcutSwitch"
-                    checked={showShortcut}
-                    onChange={toggleShortcut}
-                />
-            </div>
 
         </div>
     )
