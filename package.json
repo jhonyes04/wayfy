@@ -57,6 +57,8 @@
 		"@fortawesome/fontawesome-svg-core": "^7.2.0",
 		"@fortawesome/free-solid-svg-icons": "^7.2.0",
 		"@fortawesome/react-fontawesome": "^3.3.0",
+		"@geoapify/geocoder-autocomplete": "^2.0.2",
+		"@geoapify/react-geocoder-autocomplete": "^2.0.1",
 		"@mapbox/search-js-react": "^1.5.1",
 		"@tanstack/react-hotkeys": "^0.9.1",
 		"date-fns": "^4.1.0",
