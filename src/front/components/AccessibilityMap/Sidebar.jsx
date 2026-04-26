@@ -2,6 +2,7 @@ import useGlobalReducer from '../../hooks/useGlobalReducer';
 import { AccessibilityDetails } from './AccessibilityDetails';
 import { FilterPanel } from '../FilterPanel/FilterPanel';
 import { SearchMap } from './SearchMap';
+import { SearchBox } from '../SearchBox/SearchBox';
 
 export const Sidebar = ({ show, toggle }) => {
     const { store, dispatch } = useGlobalReducer();
@@ -43,6 +44,9 @@ export const Sidebar = ({ show, toggle }) => {
                 className={`sidebar-content ${show ? 'sidebar-content-show' : 'sidebar-content-hidden'} d-flex flex-column overflow-hidden`}
             >
                 <SearchMap />
+
+                {/* <SearchBox variant='compact' /> */}
+
                 <div className="overflow-auto px-3">
                     {selectedFeature && (
                         <>
