@@ -5,7 +5,7 @@ import withDragAndDrop from "react-big-calendar/lib/addons/dragAndDrop";
 import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 
-import { localizer } from "./calendarLocalizer";
+import { localizer } from "./CalendarLocalizer";
 import { ItineraryModal } from "./ItineraryModal";
 import { CategorySelector } from "./CategorySelector";
 import { PlacesList } from "../AccessibilityMap/PlacesList";
