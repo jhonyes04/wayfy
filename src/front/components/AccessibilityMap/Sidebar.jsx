@@ -3,10 +3,11 @@ import { AccessibilityDetails } from './AccessibilityDetails';
 import { FilterPanel } from '../FilterPanel/FilterPanel';
 import { SearchMap } from './SearchMap';
 import { SearchBox } from '../SearchBox/SearchBox';
+import { PlacesList } from './PlacesList';
 
 export const Sidebar = ({ show, toggle }) => {
     const { store, dispatch } = useGlobalReducer();
-    const { places, activeFilters, selectedFeature } = store;
+    const { activeFilters, selectedFeature } = store;
 
     const handleFilterChange = (newFilters) => {
         dispatch({
@@ -19,13 +20,6 @@ export const Sidebar = ({ show, toggle }) => {
         dispatch({
             type: 'SET_SELECTED_FEATURE',
             payload: null,
-        });
-    };
-
-    const handleClickDelete = (placeId) => {
-        dispatch({
-            type: 'REMOVE_PLACE',
-            payload: placeId,
         });
     };
 
@@ -63,29 +57,7 @@ export const Sidebar = ({ show, toggle }) => {
                         onChange={handleFilterChange}
                     />
 
-                    {places.length > 0 && (
-                        <>
-                            <h6>Marcadores</h6>
-                            {places.map((place) => (
-                                <div
-                                    key={place.id}
-                                    className="card mb-2 p-2 shadow-sm"
-                                >
-                                    <div className="d-flex justify-content-between align-items-center">
-                                        <span>{place.name}</span>
-                                        <button
-                                            className="btn btn-sm btn-danger"
-                                            onClick={() =>
-                                                handleClickDelete(place.id)
-                                            }
-                                        >
-                                            <i className="fa-solid fa-trash-can"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            ))}
-                        </>
-                    )}
+                    <PlacesList />
                 </div>
             </div>
         </section>

@@ -8,6 +8,7 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 import { localizer } from "./calendarLocalizer";
 import { ItineraryModal } from "./ItineraryModal";
 import { CategorySelector } from "./CategorySelector";
+import { PlacesList } from "../AccessibilityMap/PlacesList";
 
 // Inicializamos el calendario con Drag & Drop
 const DnDCalendar = withDragAndDrop(Calendar);
