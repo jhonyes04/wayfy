@@ -211,7 +211,7 @@ export const ItineraryComponent = () => {
                             step={15}
                             events={filteredEvents}
                             defaultView={Views.DAY}
-                            views={[Views.WEEK, Views.DAY]}
+                            views={[Views.WEEK, Views.DAY, Views.AGENDA]}
                             defaultDate={defaultDate}
                             scrollToTime={scrollToTime}
                             min={new Date(0, 0, 0, 6, 0, 0)}

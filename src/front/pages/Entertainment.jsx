@@ -1,6 +1,6 @@
 export const Entertainment = () => {
     return (
-        <div className="text-center mt-4">
+        <div className="mx-auto mt-4">
             <h1>Entretenimiento</h1>
         </div>
     );

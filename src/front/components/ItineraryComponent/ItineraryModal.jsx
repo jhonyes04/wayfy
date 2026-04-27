@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useEffect } from "react";
 import { CategorySelector } from "./CategorySelector";
 
 export const ItineraryModal = ({
@@ -9,115 +9,120 @@ export const ItineraryModal = ({
     setInputs,
     isEditing
 }) => {
-    const modalRef = useRef(null);
 
+    // Evitar scroll del body cuando el modal está abierto
     useEffect(() => {
         if (show) {
-            const modal = new window.bootstrap.Modal(modalRef.current);
-            modal.show();
+            document.body.classList.add("modal-open");
         } else {
-            const modal = window.bootstrap.Modal.getInstance(modalRef.current);
-            if (modal) modal.hide();
+            document.body.classList.remove("modal-open");
         }
     }, [show]);
 
     return (
-        <div
-            className="modal fade"
-            ref={modalRef}
-            tabIndex="-1"
-            data-bs-backdrop="static"
-            data-bs-keyboard="false"
-        >
-            <div className="modal-dialog">
-                <form className="modal-content" onSubmit={onSubmit}>
-                    <div className="modal-header">
-                        <h5 className="modal-title">
-                            {isEditing ? "Editar evento" : "Nuevo evento"}
-                        </h5>
-                        <button type="button" className="btn-close" onClick={onClose}></button>
-                    </div>
+        <>
+            {/* BACKDROP CONTROLADO POR REACT */}
+            {show && <div className="modal-backdrop fade show"></div>}
 
-                    <div className="modal-body">
-
-                        {/* TÍTULO */}
-                        <div className="mb-3">
-                            <label className="form-label">Título</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                value={inputs.title}
-                                onChange={(e) =>
-                                    setInputs({ ...inputs, title: e.target.value })
-                                }
-                                required
-                            />
+            <div
+                className={`modal fade ${show ? "show d-block" : ""}`}
+                tabIndex="-1"
+                role="dialog"
+                aria-modal={show ? "true" : undefined}
+            >
+                <div className="modal-dialog">
+                    <form className="modal-content" onSubmit={onSubmit}>
+                        <div className="modal-header">
+                            <h5 className="modal-title text-primary">
+                                {isEditing ? "Editar evento" : "Nuevo evento"}
+                            </h5>
+                            <button
+                                type="button"
+                                className="btn-close"
+                                onClick={onClose}
+                            ></button>
                         </div>
 
-                        {/* FECHA */}
-                        <div className="mb-3">
-                            <label className="form-label">Fecha</label>
-                            <input
-                                type="date"
-                                className="form-control"
-                                value={inputs.date}
-                                onChange={(e) =>
-                                    setInputs({ ...inputs, date: e.target.value })
-                                }
-                                required
-                            />
+                        <div className="modal-body">
+
+                            <div className="mb-3">
+                                <label className="form-label fw-bold">Título</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    value={inputs.title}
+                                    onChange={(e) =>
+                                        setInputs({ ...inputs, title: e.target.value })
+                                    }
+                                    required
+                                />
+                            </div>
+
+                            <div className="d-flex gap-1">
+                                <div className="col-12 col-md-4 mb-3">
+                                    <label className="form-label fw-bold">Fecha</label>
+                                    <input
+                                        type="date"
+                                        className="form-control"
+                                        value={inputs.date}
+                                        onChange={(e) =>
+                                            setInputs({ ...inputs, date: e.target.value })
+                                        }
+                                        required
+                                    />
+                                </div>
+
+                                <div className="col-6 col-md-4 mb-3">
+                                    <label className="form-label fw-bold">Hora inicio</label>
+                                    <input
+                                        type="time"
+                                        className="form-control"
+                                        step="900"
+                                        value={inputs.startTime}
+                                        onChange={(e) =>
+                                            setInputs({ ...inputs, startTime: e.target.value })
+                                        }
+                                        required
+                                    />
+                                </div>
+
+                                <div className="col-6 col-md-4 mb-3">
+                                    <label className="form-label fw-bold">Hora fin</label>
+                                    <input
+                                        type="time"
+                                        className="form-control"
+                                        step="900"
+                                        value={inputs.endTime}
+                                        onChange={(e) =>
+                                            setInputs({ ...inputs, endTime: e.target.value })
+                                        }
+                                        required
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="mb-3">
+                                <CategorySelector
+                                    value={inputs.category}
+                                    onChange={(cat) =>
+                                        setInputs({ ...inputs, category: cat })
+                                    }
+                                />
+                            </div>
+
                         </div>
 
-                        {/* HORA INICIO */}
-                        <div className="mb-3">
-                            <label className="form-label">Hora inicio</label>
-                            <input
-                                type="time"
-                                className="form-control"
-                                step="900"
-                                value={inputs.startTime}
-                                onChange={(e) =>
-                                    setInputs({ ...inputs, startTime: e.target.value })
-                                }
-                                required
-                            />
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary" onClick={onClose}>
+                                Cancelar
+                            </button>
+                            <button type="submit" className="btn btn-success">
+                                Guardar
+                            </button>
                         </div>
-
-                        {/* HORA FIN */}
-                        <div className="mb-3">
-                            <label className="form-label">Hora fin</label>
-                            <input
-                                type="time"
-                                className="form-control"
-                                step="900"
-                                value={inputs.endTime}
-                                onChange={(e) =>
-                                    setInputs({ ...inputs, endTime: e.target.value })
-                                }
-                                required
-                            />
-                        </div>
-
-                        {/* CATEGORÍA */}
-                        <div className="mb-3">
-                            <CategorySelector
-                                value={inputs.category}
-                                onChange={(cat) => setInputs({ ...inputs, category: cat })}
-                            />
-                        </div>
-
-                    </div>
-
-                    <div className="modal-footer">
-                        <button type="button" className="btn btn-secondary" onClick={onClose}>
-                            Cancelar
-                        </button>
-                        <button type="submit" className="btn btn-primary">
-                            Guardar
-                        </button>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
-        </div>
+        </>
     );
 };
