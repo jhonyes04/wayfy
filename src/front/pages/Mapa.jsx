@@ -1,9 +1,7 @@
 import { useState, useEffect } from 'react';
 import { AccessibilityMap } from '../components/AccessibilityMap/AccessibilityMap'
-// import { Sidebar } from '../components/Sidebar/Sidebar';
 import useGlobalReducer from '../hooks/useGlobalReducer';
 import { FilterPanel } from '../components/FilterPanel/FilterPanel';
-import { Sidebar } from '../components/Sidebar/Sidebar';
 
 export const Mapa = () => {
     const { store } = useGlobalReducer()
@@ -34,9 +32,7 @@ export const Mapa = () => {
                 <AccessibilityMap />
             </section>
 
-            <Sidebar show={showSidebar} toggle={handleToggleSidebar}>
-                <FilterPanel />
-            </Sidebar>
+            <FilterPanel />
         </main>
     );
 };
