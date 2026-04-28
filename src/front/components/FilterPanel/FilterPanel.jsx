@@ -12,7 +12,6 @@ export const FilterPanel = () => {
         <>
             <div
                 className={`
-                    filter-panel
                     position-absolute end-0
                     ${show ? 'filter-open' : 'filter-closed'} z-1`}
                 style={{
@@ -20,7 +19,7 @@ export const FilterPanel = () => {
                 }}
             >
                 <div
-                    className="filter-inner d-flex gap-4 p-2 rounded-3"
+                    className="d-flex gap-4 p-2 rounded-3"
                     style={{
                         background: 'rgba(0,0,0,0.6)',
                         pointerEvents: 'auto', // el contenido sí recibe clics

@@ -2,13 +2,20 @@ import { useState, useEffect } from 'react';
 import { AccessibilityMap } from '../components/AccessibilityMap/AccessibilityMap'
 import useGlobalReducer from '../hooks/useGlobalReducer';
 import { FilterPanel } from '../components/FilterPanel/FilterPanel';
+import { AccessibilityDetails } from '../components/AccessibilityMap/AccessibilityDetails'
 
 export const Mapa = () => {
-    const { store } = useGlobalReducer()
-    const { places } = store;
+    const { store, dispatch } = useGlobalReducer()
+    const { places, selectedFeature } = store;
     const [showSidebar, setShowSidebar] = useState(true);
 
+    console.log(selectedFeature)
+
     const handleToggleSidebar = () => setShowSidebar(!showSidebar);
+
+    const handleClose = () => {
+        dispatch({ type: 'SET_SELECTED_FEATURE', payload: null })
+    }
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -33,6 +40,10 @@ export const Mapa = () => {
             </section>
 
             <FilterPanel />
+
+            {selectedFeature && (
+                <AccessibilityDetails feature={selectedFeature} onClose={handleClose} />
+            )}
         </main>
     );
 };
