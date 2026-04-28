@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import useGlobalReducer from '../../hooks/useGlobalReducer';
 import useTooltip from '../../hooks/useTooltip';
 import { useTheme } from '../../context/ThemeContext';
@@ -21,7 +21,14 @@ const PLACE_CATEGORIES = [
 export const FilterCategories = () => {
     const { store, dispatch } = useGlobalReducer();
     const { activeCategories = [] } = store;
+    const [selectAllActive, setSelectAllActive] = useState(false)
     const { theme } = useTheme()
+
+    const tooltipRef = useTooltip({
+        title: selectAllActive ? 'Seleccionar todo' : 'Deseleccionar todo',
+        placement: 'bottom',
+        trigger: 'hover'
+    })
 
     useEffect(() => {
         dispatch({
@@ -38,7 +45,6 @@ export const FilterCategories = () => {
                 'baños',
                 'dinero',
                 'tiendas',
-                'otros',
             ],
         });
 
@@ -46,30 +52,31 @@ export const FilterCategories = () => {
 
     const toggle = (value) => {
         const newValues = activeCategories.includes(value)
-            ? activeCategories.length > 1
-                ? activeCategories.filter((v) => v !== value)
-                : activeCategories
+            ? activeCategories.filter((v) => v !== value)
             : [...activeCategories, value];
 
         dispatch({ type: 'SET_ACTIVE_CATEGORIES', payload: newValues });
     };
 
     const handleSelectAll = () => {
-        const isAll = activeCategories.length !== PLACE_CATEGORIES.length;
+        const newSelect = PLACE_CATEGORIES.map((i) => i.value).slice(0, -1)
+
         dispatch({
             type: 'SET_ACTIVE_CATEGORIES',
-            payload: isAll
-                ? PLACE_CATEGORIES.map((i) => i.value)
-                : [PLACE_CATEGORIES[0].value],
+            payload: selectAllActive
+                ? newSelect
+                : [],
         });
     };
 
+    const handleClickSelectActive = () => {
+        handleSelectAll()
+        setSelectAllActive(!selectAllActive)
+    }
+
     return (
         <section>
-            <div className="d-flex justify-content-between align-items-center mb-2">
-                <h6 className="text-light m-0">Categorías</h6>
-            </div>
-
+            <h6 className="text-light m-0">Categorías</h6>
             <div className="row g-1">
                 {PLACE_CATEGORIES.map((cat) => {
                     const isActive = activeCategories.includes(cat.value);
@@ -84,28 +91,32 @@ export const FilterCategories = () => {
                         <div
                             ref={tooltipRef}
                             key={cat.value}
-                            className='col-1'
+                            className='col flex-wrap'
                         >
                             <button
                                 onClick={() => toggle(cat.value)}
                                 className={`btn btn-sm w-100 d-flex flex-column align-items-center py-2 border-2 rounded-2 ${isActive
                                     ? 'btn-success border-success text-primary fw-bold shadow-sm'
-                                    : 'btn-light border-light-subtle text-muted opacity-50'
+                                    : 'btn-light border-light-subtle text-muted fw-bold opacity-50'
                                     }`}
                             >
                                 <i
                                     className={`fa-solid ${cat.faIcon} ${isActive ? 'text-white' : 'text-muted'
-                                        } text-small mb-1`}
+                                        }`}
                                 ></i>
-                                <span
-                                    className={`${isActive ? theme === 'light' ? 'text-white' : 'text-dark' : 'text-muted'} text-truncate text-small w-100 px-1`}
-                                >
-                                    {/* {cat.label} */}
-                                </span>
                             </button>
                         </div>
                     );
                 })}
+                <div className="col">
+                    <button
+                        ref={tooltipRef}
+                        onClick={handleClickSelectActive}
+                        className={`btn btn-sm ${selectAllActive ? 'btn-light' : 'btn-danger'} w-100 d-flex flex-column align-items-center py-2 border-2 rounded-2 fw-bold shadow-sm`}
+                    >
+                        <i className={`fa-solid ${selectAllActive ? 'fa-circle-check' : 'fa-circle-xmark'}`}></i>
+                    </button>
+                </div>
             </div>
         </section>
     );

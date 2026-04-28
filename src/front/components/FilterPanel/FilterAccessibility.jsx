@@ -40,9 +40,9 @@ export const FilterAccessibility = () => {
 
     return (
         <section>
-            <h6 className="text-light">Accesibilidad</h6>
+            <h6 className="text-light m-0">Accesibilidad</h6>
 
-            <div className="d-flex gap-1">
+            <div className="row g-1">
                 {ACCESSIBILITY_FILTERS.map((f) => {
                     const isActive = activeFilters.includes(f.value);
 
@@ -53,19 +53,24 @@ export const FilterAccessibility = () => {
                     })
 
                     return (
-                        <button
-                            key={f.value}
+                        <div
                             ref={tooltipRef}
-                            onClick={() => toggle(f.value)}
-                            className={`btn btn-sm flex-fill d-flex flex-column align-items-center py-2 border-2 rounded-2 
-                                ${isActive
-                                    ? `btn-${f.color} fw-bold shadow-sm`
-                                    : 'btn-light border-light-subtle text-muted fw-bold opacity-50'
-                                }`}
+                            key={f.value}
+                            className='col flex-wrap'
                         >
-                            <i className={`${f.faIcon} mb-1`}></i>
-                            {/* <span className="text-small">{f.label}</span> */}
-                        </button>
+                            <button
+                                onClick={() => toggle(f.value)}
+                                className={`btn btn-sm w-100 d-flex flex-column align-items-center py-2 border-2 rounded-2 ${isActive
+                                    ? `btn-${f.color} border-${f.color} text-primary fw-bold shadow-sm`
+                                    : 'btn-light border-light-subtle text-muted fw-bold opacity-50'
+                                    }`}
+                            >
+                                <i
+                                    className={`fa-solid ${f.faIcon} ${isActive ? 'text-white' : 'text-muted'
+                                        }`}
+                                ></i>
+                            </button>
+                        </div>
                     );
                 })}
             </div>

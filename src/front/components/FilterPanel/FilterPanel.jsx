@@ -1,5 +1,4 @@
 import React from 'react';
-import useGlobalReducer from '../../hooks/useGlobalReducer';
 import { FilterAccessibility } from './FilterAccessibility';
 import { FilterCategories } from './FilterCategories';
 

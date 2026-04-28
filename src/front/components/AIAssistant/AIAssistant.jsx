@@ -56,9 +56,8 @@ export const AIAssistant = () => {
 
             <div
                 className="col-12 col-md-5 position-absolute start-50 translate-middle-x opacity-75 z-1"
-                style={{ bottom: '5px' }}
+                style={{ bottom: '30px' }}
             >
-                {/* <div className="container mx-auto"> */}
                 <form
                     onSubmit={handleSubmit}
                     className="d-flex align-items-center gap-1 bg-dark text-white p-2 rounded-3"
@@ -66,7 +65,7 @@ export const AIAssistant = () => {
                     <div className="position-relative w-100">
                         <input
                             ref={inputRef}
-                            className="form-control bg-dark text-white border border-secondary rounded-3"
+                            className="form-control bg-dark text-white border border-secondary rounded-3 w-100"
                             placeholder="Pregunta a Wayfy..."
                             value={query}
                             onChange={(e) => setQuery(e.target.value)}
@@ -76,7 +75,10 @@ export const AIAssistant = () => {
                         />
 
                         {showShortcut && (
-                            <span className="badge badge-shortcut bg-dark mt-1">
+                            <span
+                                className="badge badge-shortcut bg-dark mt-1"
+                                style={{ pointerEvents: 'none' }}
+                            >
                                 {GO_WRITER.combo}
                             </span>
                         )}
@@ -100,7 +102,6 @@ export const AIAssistant = () => {
                     </div>
 
                 </form>
-                {/* </div> */}
             </div>
         </>
     );

@@ -6,7 +6,7 @@ export const Sidebar = ({ show, toggle, children }) => {
         <>
             {/* SIDEBAR */}
             <aside
-                className={`sidebar
+                className={`sidebar bg-transparent
                     position-absolute end-0 h-100 d-flex flex-column  ${show ? 'sidebar-open' : 'sidebar-closed'} z-1`}
                 style={{ top: '5px' }}
             >
@@ -18,8 +18,7 @@ export const Sidebar = ({ show, toggle, children }) => {
             <button
                 className="btn btn-sm btn-primary position-absolute end-0 rounded-start-pill shadow-sm d-flex align-items-center justify-content-center z-1"
                 style={{
-                    // right: show ? '0' : '0px',
-                    top: '5px',
+                    // top: '5px',
                     transition: 'right 0.35s ease'
                 }}
                 onClick={toggle}
