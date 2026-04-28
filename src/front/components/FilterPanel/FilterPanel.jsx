@@ -12,7 +12,7 @@ export const FilterPanel = () => {
         <>
             <div
                 className={`
-                    position-absolute end-0
+                    position-absolute end-0 ms-5
                     ${show ? 'filter-open' : 'filter-closed'} z-1`}
                 style={{
                     top: '5px'

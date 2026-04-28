@@ -9,8 +9,6 @@ export const Mapa = () => {
     const { places, selectedFeature } = store;
     const [showSidebar, setShowSidebar] = useState(true);
 
-    console.log(selectedFeature)
-
     const handleToggleSidebar = () => setShowSidebar(!showSidebar);
 
     const handleClose = () => {

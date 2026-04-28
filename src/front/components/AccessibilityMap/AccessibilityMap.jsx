@@ -31,7 +31,7 @@ export const AccessibilityMap = () => {
         <div className="w-100 h-100 position-relative overflow-hidden">
             {/* INDICADOR DE CARGA */}
             {loading && (
-                <div className="position-absolute top-0 start-50 translate-middle-x mt-3 z-1">
+                <div className="position-absolute z-1" style={{ top: '5px', left: '60px' }}>
                     <div className="alert alert-light shadow-sm border-0 d-flex align-items-center rounded-pill px-4 py-2 gap-3">
                         <div className="spinner-border spinner-border-sm text-primary"></div>
                         <span className="text-small fw-bold text-primary">

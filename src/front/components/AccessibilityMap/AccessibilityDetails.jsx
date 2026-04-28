@@ -248,13 +248,12 @@ export const AccessibilityDetails = ({ feature, onClose }) => {
                                         </a>
                                     </div>
                                 )}
-                                {/* ... Resto de infoTags omitidos por brevedad ... */}
                             </Section>
                         </div>
                     )}
                     <button
                         type="button"
-                        className={`btn ${isAlreadySaved ? 'btn-outline-danger' : 'btn-success'} fw-bold shadow-sm w-100 mt-3`}
+                        className={`btn ${isAlreadySaved ? 'btn-danger' : 'btn-success'} fw-bold shadow-sm w-100 mt-3`}
                         onClick={handleTogglePlace}
                     >
                         {isAlreadySaved ? (

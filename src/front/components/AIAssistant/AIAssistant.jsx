@@ -55,8 +55,8 @@ export const AIAssistant = () => {
             )}
 
             <div
-                className="col-12 col-md-5 position-absolute start-50 translate-middle-x opacity-75 z-1"
-                style={{ bottom: '30px' }}
+                className="col-11 col-lg-5 position-absolute start-50 translate-middle-x opacity-75 z-3"
+                style={{ bottom: '5px' }}
             >
                 <form
                     onSubmit={handleSubmit}
