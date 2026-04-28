@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import { AccessibilityMap } from '../components/AccessibilityMap/AccessibilityMap'
-import { Sidebar } from '../components/AccessibilityMap/Sidebar';
+// import { Sidebar } from '../components/Sidebar/Sidebar';
 import useGlobalReducer from '../hooks/useGlobalReducer';
+import { FilterPanel } from '../components/FilterPanel/FilterPanel';
+import { Sidebar } from '../components/Sidebar/Sidebar';
 
 export const Mapa = () => {
     const { store } = useGlobalReducer()
@@ -13,7 +15,7 @@ export const Mapa = () => {
     useEffect(() => {
         const interval = setInterval(() => {
             window.dispatchEvent(new Event('resize'));
-        }, 10); // Cada 10ms refresca el tamaño del mapa
+        }, 10);
 
         const timer = setTimeout(() => {
             clearInterval(interval);
@@ -27,17 +29,14 @@ export const Mapa = () => {
     }, [showSidebar]);
 
     return (
-        <main className="d-flex flex-row flex-grow-1 position-relative overflow-hidden">
+        <main className="d-flex flex-row flex-grow-1 position-relative">
             <section className="h-100 flex-grow-1 position-relative z-1 overflow-auto">
                 <AccessibilityMap />
             </section>
 
-            <Sidebar
-                show={showSidebar}
-                toggle={handleToggleSidebar}
-                places={places}
-            />
-
+            <Sidebar show={showSidebar} toggle={handleToggleSidebar}>
+                <FilterPanel />
+            </Sidebar>
         </main>
     );
 };

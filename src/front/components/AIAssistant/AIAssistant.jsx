@@ -55,52 +55,52 @@ export const AIAssistant = () => {
             )}
 
             <div
-                className="position-absolute bottom-0 start-0 end-0 mb-4 mx-5 z-1"
-                style={{ opacity: '0.9' }}
+                className="col-12 col-md-5 position-absolute start-50 translate-middle-x opacity-75 z-1"
+                style={{ bottom: '5px' }}
             >
-                <div className="container mx-auto">
-                    <form
-                        onSubmit={handleSubmit}
-                        className="d-flex align-items-center gap-3 bg-dark text-white p-3 rounded-3"
-                    >
-                        <div className="position-relative w-100">
-                            <input
-                                ref={inputRef}
-                                className="form-control bg-dark text-white border border-secondary rounded-3"
-                                placeholder="Pregunta a Wayfy..."
-                                value={query}
-                                onChange={(e) => setQuery(e.target.value)}
-                                onKeyDown={handleKeyDown}
-                                readOnly={isListening}
-                                disabled={isProcessing}
-                            />
+                {/* <div className="container mx-auto"> */}
+                <form
+                    onSubmit={handleSubmit}
+                    className="d-flex align-items-center gap-1 bg-dark text-white p-2 rounded-3"
+                >
+                    <div className="position-relative w-100">
+                        <input
+                            ref={inputRef}
+                            className="form-control bg-dark text-white border border-secondary rounded-3"
+                            placeholder="Pregunta a Wayfy..."
+                            value={query}
+                            onChange={(e) => setQuery(e.target.value)}
+                            onKeyDown={handleKeyDown}
+                            readOnly={isListening}
+                            disabled={isProcessing}
+                        />
 
-                            {showShortcut && (
-                                <span className="badge badge-shortcut bg-dark mt-1">
-                                    {GO_WRITER.combo}
-                                </span>
-                            )}
-                        </div>
-                        <div className="position-relative">
-                            <i
-                                onClick={() => !isProcessing && toggleListening()}
-                                className={`fa-solid fa-xl ${isListening
-                                    ? 'fa-microphone-lines fa-pulse text-danger'
-                                    : 'fa-microphone-lines text-white cursor-pointer'
-                                    }`}
-                                style={{ cursor: 'pointer' }}
-                                disabled={isProcessing}
-                                title="Hablar con la IA"
-                            ></i>
-                            {showShortcut && (
-                                <span className="badge badge-shortcut bg-dark">
-                                    {GO_VOICE.combo}
-                                </span>
-                            )}
-                        </div>
+                        {showShortcut && (
+                            <span className="badge badge-shortcut bg-dark mt-1">
+                                {GO_WRITER.combo}
+                            </span>
+                        )}
+                    </div>
+                    <div className="position-relative">
+                        <i
+                            onClick={() => !isProcessing && toggleListening()}
+                            className={`fa-solid ${isListening
+                                ? 'fa-microphone-lines fa-pulse text-danger'
+                                : 'fa-microphone-lines text-white cursor-pointer'
+                                }`}
+                            style={{ cursor: 'pointer' }}
+                            disabled={isProcessing}
+                            title="Hablar con la IA"
+                        ></i>
+                        {showShortcut && (
+                            <span className="badge badge-shortcut bg-dark">
+                                {GO_VOICE.combo}
+                            </span>
+                        )}
+                    </div>
 
-                    </form>
-                </div>
+                </form>
+                {/* </div> */}
             </div>
         </>
     );

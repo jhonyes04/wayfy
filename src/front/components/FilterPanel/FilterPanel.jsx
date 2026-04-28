@@ -6,9 +6,12 @@ import { FilterCategories } from './FilterCategories';
 export const FilterPanel = () => {
 
     return (
-        <div className="filter-panel d-flex flex-column gap-3 p-1">
+        <div
+            className="d-flex rounded-3 gap-4 p-2"
+            style={{ background: 'rgba(0, 0, 0, 0.6)' }}
+        >
             <FilterAccessibility />
-            <FilterCategories typeView="grid" />
+            <FilterCategories />
         </div>
     );
 };

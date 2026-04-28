@@ -1,5 +1,6 @@
 import React from 'react';
 import useGlobalReducer from '../../hooks/useGlobalReducer';
+import useTooltip from '../../hooks/useTooltip'
 
 const ACCESSIBILITY_FILTERS = [
     {
@@ -39,14 +40,22 @@ export const FilterAccessibility = () => {
 
     return (
         <section>
-            <h6 className="text-primary">Accesibilidad</h6>
+            <h6 className="text-light">Accesibilidad</h6>
 
             <div className="d-flex gap-1">
                 {ACCESSIBILITY_FILTERS.map((f) => {
                     const isActive = activeFilters.includes(f.value);
+
+                    const tooltipRef = useTooltip({
+                        title: f.label,
+                        placement: 'bottom',
+                        trigger: 'hover'
+                    })
+
                     return (
                         <button
                             key={f.value}
+                            ref={tooltipRef}
                             onClick={() => toggle(f.value)}
                             className={`btn btn-sm flex-fill d-flex flex-column align-items-center py-2 border-2 rounded-2 
                                 ${isActive
@@ -55,7 +64,7 @@ export const FilterAccessibility = () => {
                                 }`}
                         >
                             <i className={`${f.faIcon} mb-1`}></i>
-                            <span className="text-small">{f.label}</span>
+                            {/* <span className="text-small">{f.label}</span> */}
                         </button>
                     );
                 })}

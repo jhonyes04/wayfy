@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import useGlobalReducer from '../../hooks/useGlobalReducer';
+import useTooltip from '../../hooks/useTooltip';
 import { useTheme } from '../../context/ThemeContext';
 
 const PLACE_CATEGORIES = [
@@ -17,33 +18,30 @@ const PLACE_CATEGORIES = [
     { value: 'otros', label: 'Otros', faIcon: 'fa-ellipsis' },
 ];
 
-export const FilterCategories = ({ typeView = 'grid' }) => {
+export const FilterCategories = () => {
     const { store, dispatch } = useGlobalReducer();
     const { activeCategories = [] } = store;
     const { theme } = useTheme()
 
     useEffect(() => {
-        if (typeView === 'list') {
-            dispatch({ type: 'SET_ACTIVE_CATEGORIES', payload: [] });
-        } else if (typeView === 'grid') {
-            dispatch({
-                type: 'SET_ACTIVE_CATEGORIES',
-                payload: [
-                    'gastronomia',
-                    'alojamiento',
-                    'transporte',
-                    'salud',
-                    'cultura_turismo',
-                    'recreacion',
-                    'deporte',
-                    'gobierno',
-                    'baños',
-                    'dinero',
-                    'tiendas',
-                    'otros',
-                ],
-            });
-        }
+        dispatch({
+            type: 'SET_ACTIVE_CATEGORIES',
+            payload: [
+                'gastronomia',
+                'alojamiento',
+                'transporte',
+                'salud',
+                'cultura_turismo',
+                'recreacion',
+                'deporte',
+                'gobierno',
+                'baños',
+                'dinero',
+                'tiendas',
+                'otros',
+            ],
+        });
+
     }, []);
 
     const toggle = (value) => {
@@ -69,26 +67,24 @@ export const FilterCategories = ({ typeView = 'grid' }) => {
     return (
         <section>
             <div className="d-flex justify-content-between align-items-center mb-2">
-                <h6 className="text-primary m-0">Categorías</h6>
-                {typeView === 'grid' && (
-                    <button
-                        onClick={handleSelectAll}
-                        className="btn btn-sm btn-light text-small fw-bold"
-                    >
-                        {activeCategories.length === PLACE_CATEGORIES.length
-                            ? 'Seleccionar uno'
-                            : 'Seleccionar todos'}
-                    </button>
-                )}
+                <h6 className="text-light m-0">Categorías</h6>
             </div>
 
             <div className="row g-1">
                 {PLACE_CATEGORIES.map((cat) => {
                     const isActive = activeCategories.includes(cat.value);
+
+                    const tooltipRef = useTooltip({
+                        title: cat.label,
+                        placement: 'bottom',
+                        trigger: 'hover'
+                    })
+
                     return (
                         <div
+                            ref={tooltipRef}
                             key={cat.value}
-                            className={`${typeView === 'grid' ? 'col-4' : 'col-12'}`}
+                            className='col-1'
                         >
                             <button
                                 onClick={() => toggle(cat.value)}
@@ -104,7 +100,7 @@ export const FilterCategories = ({ typeView = 'grid' }) => {
                                 <span
                                     className={`${isActive ? theme === 'light' ? 'text-white' : 'text-dark' : 'text-muted'} text-truncate text-small w-100 px-1`}
                                 >
-                                    {cat.label}
+                                    {/* {cat.label} */}
                                 </span>
                             </button>
                         </div>
