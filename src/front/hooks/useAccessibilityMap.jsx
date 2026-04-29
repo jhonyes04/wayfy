@@ -51,14 +51,27 @@ const useAccessibilityMap = () => {
                     'circle-radius': [
                         'step',
                         ['get', 'point_count'],
-                        20,
-                        10,
-                        30,
-                        50,
-                        40,
+                        18, 10,
+                        24, 50,
+                        32
                     ],
-                    'circle-stroke-width': 2,
-                    'circle-stroke-color': '#fff',
+                    'circle-stroke-width': [
+                        'step',
+                        ['get', 'point_count'],
+                        3, 10,
+                        4, 50,
+                        5
+                    ],
+                    'circle-stroke-color': [
+                        'step',
+                        ['get', 'point_count'],
+                        'rgba(9, 116, 91, 0.5)',
+                        10,
+                        'rgba(56, 189, 248, 0.5)',
+                        50,
+                        'rgba(236, 142, 142, 0.5)'
+                    ],
+                    'circle-blur': 0.0001,
                 },
             },
             clusterCountLayer: {
@@ -67,13 +80,14 @@ const useAccessibilityMap = () => {
                 filter: ['has', 'point_count'],
                 layout: {
                     'text-field': '{point_count_abbreviated}',
-                    'text-size': 16,
+                    'text-size': 14,
                     'text-font': [
                         'DIN Offc Pro Medium',
                         'Arial Unicode MS Bold',
                     ],
+                    'text-allow-overlap': true
                 },
-                paint: { 'text-color': '#fff' },
+                paint: { 'text-color': '#ffffff' },
             },
             unclusteredLayer: {
                 id: 'unclustered-point',
@@ -93,7 +107,8 @@ const useAccessibilityMap = () => {
                         '#93a2b8',
                     ],
                     'circle-stroke-width': 2,
-                    'circle-stroke-color': '#fff',
+                    'circle-stroke-color': '#ffffff',
+                    'circle-pitch-alignment': 'map'
                 },
             },
         }),
