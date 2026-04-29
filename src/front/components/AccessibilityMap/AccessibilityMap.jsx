@@ -43,7 +43,7 @@ export const AccessibilityMap = () => {
 
             {/* AVISO DE ERROR */}
             {!loading && error && (
-                <div className="position-absolute top-0 start-50 translate-middle-x mt-3 z-1">
+                <div className="position-absolute z-1" style={{ top: '5px', left: '60px' }}>
                     <div className="alert alert-warning border-0 shadow-sm py-2 px-4 small fw-bold rounded-pill">
                         <i className="fa-solid fa-circle-exclamation me-2"></i>
                         <span className="text-small">{error}</span>
