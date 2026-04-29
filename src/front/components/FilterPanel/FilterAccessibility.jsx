@@ -40,15 +40,15 @@ export const FilterAccessibility = () => {
 
     return (
         <section>
-            <h6 className="text-light m-0">Accesibilidad</h6>
+            {/* <h6 className="text-light m-0">Accesibilidad</h6> */}
 
-            <div className="row g-1">
+            <div className="d-flex flex-column gap-1">
                 {ACCESSIBILITY_FILTERS.map((f) => {
                     const isActive = activeFilters.includes(f.value);
 
                     const tooltipRef = useTooltip({
                         title: f.label,
-                        placement: 'bottom',
+                        placement: 'left',
                         trigger: 'hover'
                     })
 

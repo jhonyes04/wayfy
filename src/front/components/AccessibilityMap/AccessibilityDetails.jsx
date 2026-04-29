@@ -154,14 +154,11 @@ export const AccessibilityDetails = ({ feature, onClose }) => {
         <>
             {/* CONTENEDOR PRINCIPAL CON POSICIONAMIENTO */}
             <div
-                className="card shadow-lg position-absolute z-1"
+                className="card shadow-lg position-absolute top-50 start-50 translate-middle z-1"
                 style={{
-                    background: 'rgba(0, 0, 0, 0.6)',
-                    top: '80px',
-                    right: '5px',
-                    // zIndex: 1000,
-                    width: '320px',
-                    maxHeight: 'calc(100% - 40px)',
+                    background: 'rgba(0, 0, 0, 0.65)',
+                    maxWidth: '600px',
+                    maxHeight: 'calc(100vh - 140px)',
                     overflowY: 'auto'
                 }}
             >
@@ -188,35 +185,22 @@ export const AccessibilityDetails = ({ feature, onClose }) => {
                             </div>
                         </div>
 
-                        <div>
-                            <h5 className="text-white m-0 lh-sm">{properties.name || 'Lugar sin nombre'}</h5>
+                        <div className='d-flex justify-content-between align-items-center'>
+                            <div>
+                                <h5 className="text-white m-0 lh-sm">{properties.name || 'Lugar sin nombre'}</h5>
 
-                            <div className="small text-white">
-                                <i className={`fa-solid ${categoryIcon} me-2`}></i>
-                                {category}
+                                <div className="small text-white">
+                                    <i className={`fa-solid ${categoryIcon} me-2`}></i>
+                                    {category}
+                                </div>
                             </div>
+                            <i
+                                className={`${isAlreadySaved ? 'fa-solid' : 'fa-regular'} fa-heart text-danger fs-4`}
+                                style={{ cursor: 'pointer' }}
+                                onClick={handleTogglePlace}
+                            ></i>
                         </div>
                     </div>
-
-                    {/* <div className="d-flex align-items-center gap-2 mt-3">
-                        <button
-                            type="button"
-                            className={`btn ${isAlreadySaved ? 'btn-outline-danger' : 'btn-success'} fw-bold shadow-sm w-100`}
-                            onClick={handleTogglePlace}
-                        >
-                            {isAlreadySaved ? (
-                                <>
-                                    <i className="fa-solid fa-trash-can me-2"></i>
-                                    Eliminar
-                                </>
-                            ) : (
-                                <>
-                                    <i className="fa-solid fa-plus me-2"></i>
-                                    Agregar a mi lista
-                                </>
-                            )}
-                        </button>
-                    </div> */}
 
                     {Object.values(accessibilityTags).some(nonEmpty) && (
                         <div className={`bg-success rounded-3 ${theme === 'light' ? 'text-white' : 'text-dark'} p-2 mt-2`}>
@@ -251,22 +235,10 @@ export const AccessibilityDetails = ({ feature, onClose }) => {
                             </Section>
                         </div>
                     )}
-                    <button
-                        type="button"
-                        className={`btn ${isAlreadySaved ? 'btn-danger' : 'btn-success'} fw-bold shadow-sm w-100 mt-3`}
-                        onClick={handleTogglePlace}
-                    >
-                        {isAlreadySaved ? (
-                            <>
-                                <i className="fa-solid fa-trash-can me-2"></i>
-                                Eliminar
-                            </>
-                        ) : (
-                            <>
-                                <i className="fa-solid fa-plus me-2"></i>
-                                Agregar a mi lista
-                            </>
-                        )}
+
+                    <button className="btn btn-sm btn-success fw-bold mt-3 w-100">
+                        <i className="fa-solid fa-pencil me-1"></i>
+                        Editar accesibilidad
                     </button>
                 </div>
 

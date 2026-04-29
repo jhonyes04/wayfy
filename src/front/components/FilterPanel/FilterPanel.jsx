@@ -14,25 +14,24 @@ export const FilterPanel = () => {
                 className={`
                     position-absolute end-0 ms-5
                     ${show ? 'filter-open' : 'filter-closed'} z-1`}
-                style={{
-                    top: '5px'
-                }}
             >
                 <div
-                    className="d-flex gap-4 p-2 rounded-3"
+                    className="d-flex flex-column gap-3 p-2 rounded-3 overflow-auto"
                     style={{
-                        background: 'rgba(0,0,0,0.6)',
-                        pointerEvents: 'auto', // el contenido sí recibe clics
+                        background: 'rgba(0,0,0,0.65)',
+                        pointerEvents: 'auto',
+                        maxHeight: 'calc(100vh - 140px)',
                     }}
                 >
                     <FilterAccessibility />
+                    <hr className='text-light m-0' />
                     <FilterCategories />
                 </div>
             </div>
 
             {/* BOTÓN FLOTANTE */}
             <button
-                className="btn btn-sm btn-primary position-absolute end-0 rounded-start-pill shadow-sm d-flex align-items-center justify-content-center z-3"
+                className="btn btn-sm btn-primary position-absolute end-0 top-0 rounded-start-pill shadow-sm d-flex align-items-center justify-content-center z-3"
                 style={{
                     // top: '5px',
                     transition: 'right 0.35s ease'

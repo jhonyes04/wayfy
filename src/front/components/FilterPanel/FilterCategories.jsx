@@ -76,14 +76,14 @@ export const FilterCategories = () => {
 
     return (
         <section>
-            <h6 className="text-light m-0">Categorías</h6>
-            <div className="row g-1">
+            {/* <h6 className="text-light m-0">Categorías</h6> */}
+            <div className="d-flex flex-column gap-1">
                 {PLACE_CATEGORIES.map((cat) => {
                     const isActive = activeCategories.includes(cat.value);
 
                     const tooltipRef = useTooltip({
                         title: cat.label,
-                        placement: 'bottom',
+                        placement: 'left',
                         trigger: 'hover'
                     })
 
