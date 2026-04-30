@@ -5,7 +5,7 @@ import { useTheme } from '../../context/ThemeContext'
 
 const WHEELCHAIR_LABELS = {
     yes: {
-        label: 'Totalmente accesible',
+        label: 'Accesible',
         color: 'success',
         icon: 'fa-wheelchair',
     },
@@ -20,7 +20,7 @@ const WHEELCHAIR_LABELS = {
         icon: 'fa-ban',
     },
     unknown: {
-        label: 'Estado desconocido',
+        label: 'Desconocido',
         color: 'secondary',
         icon: 'fa-circle-question',
     },
@@ -78,22 +78,6 @@ export const AccessibilityDetails = ({ feature, onClose }) => {
             });
         }
     };
-
-    // const handleToggleFavorite = () => {
-    //     if (isFavorite) {
-    //         dispatch({ type: 'REMOVE_FAVORITE', payload: properties.id });
-    //     } else {
-    //         dispatch({
-    //             type: 'ADD_FAVORITE',
-    //             payload: {
-    //                 id: properties.id,
-    //                 name: properties.name || 'Lugar sin nombre',
-    //                 longitude: coords?.[0],
-    //                 latitude: coords?.[1],
-    //             },
-    //         });
-    //     }
-    // };
 
     const nonEmpty = (value) =>
         value !== null &&
@@ -157,6 +141,7 @@ export const AccessibilityDetails = ({ feature, onClose }) => {
                 className="card shadow-lg position-absolute top-50 start-50 translate-middle z-1"
                 style={{
                     background: 'rgba(0, 0, 0, 0.65)',
+                    minWidth: '300px',
                     maxWidth: '600px',
                     maxHeight: 'calc(100vh - 140px)',
                     overflowY: 'auto'
@@ -173,14 +158,14 @@ export const AccessibilityDetails = ({ feature, onClose }) => {
                     </button>
 
                     <div className="d-flex flex-column gap-3">
-                        <div className="d-flex align-items-center">
+                        <div className="d-flex">
                             <div
                                 className={`bg-${wheelchair.color} rounded-circle shadow-sm d-flex align-items-center justify-content-center text-white`}
                                 style={{ width: '50px', height: '50px', fontSize: '1.2rem' }}
                             >
                                 <i className={`fa-solid ${wheelchair.icon}`}></i>
                             </div>
-                            <div className={`bg-dark py-1 px-3 rounded-3 text-capitalize ms-2 fw-bold`} style={{ color: `var(--bs-${wheelchair.color})` }}>
+                            <div className={`badge bg-dark py-1 px-3 rounded-3 text-capitalize align-self-end ms-2 fw-bold`} style={{ color: `var(--bs-${wheelchair.color})` }}>
                                 {wheelchair.label}
                             </div>
                         </div>
